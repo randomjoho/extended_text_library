@@ -203,8 +203,13 @@ class ExtendedTextSelectionGestureDetectorBuilder {
   @protected
   void onSingleLongTapMoveUpdate(LongPressMoveUpdateDetails details) {
     if (delegate.selectionEnabled) {
+//      renderEditable.selectPositionAt(
+//        from: details.globalPosition,
+//        cause: SelectionChangedCause.longPress,
+//      );
       renderEditable.selectPositionAt(
-        from: details.globalPosition,
+        from: details.globalPosition - details.offsetFromOrigin,
+        to: details.globalPosition,
         cause: SelectionChangedCause.longPress,
       );
     }
@@ -347,6 +352,9 @@ class CommonTextSelectionGestureDetectorBuilder
     }
   }
 
+
+
+
   @override
   void onForcePressEnd(ForcePressDetails details) {
     // Not required.
@@ -404,6 +412,9 @@ class CommonTextSelectionGestureDetectorBuilder
           Feedback.forLongPress(_context);
           break;
         case TargetPlatform.iOS:
+          renderEditable.selectWord(cause: SelectionChangedCause.longPress);
+          Feedback.forLongPress(_context);
+          break;
         default:
           renderEditable.selectPositionAt(
             from: details.globalPosition,
