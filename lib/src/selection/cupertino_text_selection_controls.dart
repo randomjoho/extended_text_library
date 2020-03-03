@@ -404,6 +404,9 @@ class ExtendedCupertinoTextSelectionControls extends TextSelectionControls {
             ),
     );
   }
+//  @override
+  void goTest() {
+  }
 
   /// Builder for iOS text selection edges.
   @override
