@@ -142,6 +142,9 @@ class ExtendedMaterialTextSelectionControls extends TextSelectionControls {
   Size getHandleSize(double textLineHeight) =>
       const Size(_kHandleSize, _kHandleSize);
 
+
+
+  
   /// Builder for material-style copy/paste text selection toolbar.
   @override
   Widget buildToolbar(
@@ -206,6 +209,8 @@ class ExtendedMaterialTextSelectionControls extends TextSelectionControls {
       ),
     );
 
+
+    
     // [handle] is a circle, with a rectangle in the top left quadrant of that
     // circle (an onion pointing to 10:30). We rotate [handle] to point
     // straight up or up-right depending on the handle type.
@@ -252,6 +257,12 @@ class ExtendedMaterialTextSelectionControls extends TextSelectionControls {
         !(value.selection.start == 0 &&
             value.selection.end == value.text.length);
   }
+
+
+//  @override
+  void goTest() {
+  }
+
 }
 
 /// Text selection controls that follow the Material Design specification.
