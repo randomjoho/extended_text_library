@@ -1,7 +1,8 @@
 import 'package:extended_text_library/src/render_object/extended_text_selection_render_object.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:chat/utils/MessageMgr.dart';
+import 'package:extended_text/extended_text.dart';
 /// Delegate interface for the [ExtendedTextSelectionGestureDetectorBuilder].
 ///
 /// The interface is usually implemented by textfield implementations wrapping
@@ -330,6 +331,7 @@ class CommonTextSelectionGestureDetectorBuilder
     @required Function onTap,
     @required BuildContext context,
     @required Function requestKeyboard,
+    ExtendedMaterialTextSelectionControls textSelectionControls
   })  : _hideToolbar = hideToolbar,
         _onTap = onTap,
         _context = context,
@@ -343,6 +345,13 @@ class CommonTextSelectionGestureDetectorBuilder
   final BuildContext _context;
 
   final Function _requestKeyboard;
+
+  ExtendedMaterialTextSelectionControls textSelectionControls;
+  
+  
+  setTest( ExtendedMaterialTextSelectionControls textSelectionControls){
+    this.textSelectionControls =textSelectionControls;
+  }
 
   @override
   void onForcePressStart(ForcePressDetails details) {
@@ -395,7 +404,12 @@ class CommonTextSelectionGestureDetectorBuilder
         case TargetPlatform.iOS:
         default:
           renderEditable.selectWordEdge(cause: SelectionChangedCause.tap);
+
           break;
+      }
+      if(textSelectionControls!=null){
+        print('textSelectionControls != null');
+        textSelectionControls.goTest();
       }
     }
     _requestKeyboard?.call();
@@ -409,10 +423,24 @@ class CommonTextSelectionGestureDetectorBuilder
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
           renderEditable.selectWord(cause: SelectionChangedCause.longPress);
+          if(textSelectionControls!=null){
+            print('textSelectionControls != null');
+            textSelectionControls.goTest();
+          }
           Feedback.forLongPress(_context);
           break;
         case TargetPlatform.iOS:
           renderEditable.selectWord(cause: SelectionChangedCause.longPress);
+//          Future.delayed(Duration(seconds: 3),(){
+//
+//          });
+          if(textSelectionControls!=null){
+            print('textSelectionControls != null');
+            textSelectionControls.goTest();
+          }else{
+            print('textSelectionControls == null');
+          }
+
           Feedback.forLongPress(_context);
           break;
         default:
