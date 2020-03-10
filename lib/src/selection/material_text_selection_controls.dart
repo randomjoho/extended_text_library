@@ -39,17 +39,17 @@ class ExtendedMaterialTextSelectionToolbar extends StatelessWidget {
     final List<Widget> items = <Widget>[
       if (handleCut != null)
         FlatButton(
-            child: Text(localizations.cutButtonLabel), onPressed: handleCut),
+            child: Text(localizations.cutButtonLabel,textScaleFactor: 1.0,style: TextStyle(fontSize: 13),), onPressed: handleCut),
       if (handleCopy != null)
         FlatButton(
-            child: Text(localizations.copyButtonLabel), onPressed: handleCopy),
+            child: Text(localizations.copyButtonLabel,textScaleFactor: 1.0,style: TextStyle(fontSize: 13)), onPressed: handleCopy),
       if (handlePaste != null)
         FlatButton(
-            child: Text(localizations.pasteButtonLabel),
+            child: Text(localizations.pasteButtonLabel,textScaleFactor: 1.0,style: TextStyle(fontSize: 13)),
             onPressed: handlePaste),
       if (handleSelectAll != null)
         FlatButton(
-            child: Text(localizations.selectAllButtonLabel),
+            child: Text(localizations.selectAllButtonLabel,textScaleFactor: 1.0,style: TextStyle(fontSize: 13)),
             onPressed: handleSelectAll),
     ];
 
